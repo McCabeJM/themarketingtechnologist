@@ -29,5 +29,5 @@ class MultiLayerPerceptronFitter(object):
         for hyper_parameter, value in self.mlp_hyper_parameters_range.items():
             best_params[hyper_parameter] = value
             setattr(self.estimator, hyper_parameter, value)
-        logging.info("Best parameters: {}".format(best_params))
+        logging.info("Set hyper-parameters: {}".format(best_params))
         self.fitted_estimator = self.estimator.fit_estimator()

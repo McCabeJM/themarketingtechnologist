@@ -21,10 +21,10 @@ ARG APP_HOME=/home/ubuntu/app
 # Install Python modules
 ADD requirements.txt ${APP_HOME}/
 RUN pip3 install -r ${APP_HOME}/requirements.txt
-# RUN pip3 install --upgrade awscli
 
 # Bundle app source
 ADD /src ${APP_HOME}/src
+ADD /output ${APP_HOME}/output
 
 # Add entrypoint shell file that determines which job to run
 COPY entrypoint.sh /entrypoint.sh
@@ -33,5 +33,4 @@ RUN ["chmod", "+x", "/entrypoint.sh"]
 # Define entrypoint
 WORKDIR ${APP_HOME}/src
 ENV PYTHONPATH ${APP_HOME}/src
-# ENTRYPOINT ["/entrypoint.sh"]
-CMD ["python3", "$APP_HOME/src/run.py"]
+CMD ["python3", "/home/ubuntu/app/src/run.py"]
